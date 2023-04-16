@@ -1,4 +1,4 @@
-local TweenService = game:GetService("TweenService")local TweenService = game:GetService("TweenService")
+local TweenService = game:GetService("TweenService")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
 local Players = game:GetService("Players")
@@ -774,7 +774,6 @@ function Library:create(options)
 		Image = "http://www.roblox.com/asset/?id=8559790237"
 	}):tooltip("settings")
 
-
 	local creditsTabIcon = profile:object("ImageButton", {
 		BackgroundTransparency = 1,
 		Theme = {ImageColor3 = "WeakText"},
@@ -783,17 +782,6 @@ function Library:create(options)
 		AnchorPoint = Vector2.new(1, 1),
 		Image = "http://www.roblox.com/asset/?id=8577523456"
 	}):tooltip("credits")
-
-    local UpdatedTabIcon = profile:object("ImageButton", {
-		BackgroundTransparency = 1,
-		Theme = {ImageColor3 = "WeakText"},
-		Size = UDim2.fromOffset(24, 24),
-		Position = UDim2.new(1, -44, 1, -10),
-		AnchorPoint = Vector2.new(1, 1),
-		Image = "http://www.roblox.com/asset/?id=8577523456"
-	}):tooltip("Updated")
-
-  
 
 	local quickAccess = homePage:object("Frame", {
 		BackgroundTransparency = 1,
@@ -835,8 +823,6 @@ function Library:create(options)
 		Icon = "rbxassetid://8559790237"
 	})
 
-
-
 	settingsTab:_theme_selector()
 
 	settingsTab:keybind{
@@ -868,7 +854,7 @@ function Library:create(options)
 		end,
 	}
 
-    local creditsTab = Library.tab(mt, {
+	local creditsTab = Library.tab(mt, {
 		Name = "Credits",
 		Internal = creditsTabIcon,
 		Icon = "http://www.roblox.com/asset/?id=8577523456"
@@ -880,18 +866,6 @@ function Library:create(options)
 
 	return mt
 end
-
-	local UpdateTab = Library.tab(mt, {
-		Name = "Credits",
-		Internal = UpdatedTabIcon,
-		Icon = "http://www.roblox.com/asset/?id=8577523456"
-	})
-
-	rawset(mt, "UpdatedContainer", UpdateTab.container)
-
-	
-
-
 
 function Library:notification(options)
 	options = self:set_defaults({
@@ -2841,45 +2815,6 @@ function Library:credit(options)
 	self._resize_tab({
 		container = self.creditsContainer or self.container,
 		layout = (self.creditsContainer and self.creditsContainer.AbsoluteObject.UIListLayout) or self.layout
-	})
-end
-
-function Library:Updated(options)
-	options = self:set_defaults({
-		Name = "Updated",
-		Description = nil
-	}, options)
-	
-
-	local UpdatedContainer = (self.UpdatedContainer or self.container):object("Frame", {
-		Theme = {BackgroundColor3 = "Secondary"},
-		Size = UDim2.new(1, -20, 0, 52)
-	}):round(7)
-
-	local name = UpdatedContainer:object("TextLabel", {
-		BackgroundTransparency = 1,
-		Position = UDim2.fromOffset(10, (options.Description and 5) or 0),
-		Size = (options.Description and UDim2.new(0.5, -10, 0, 22)) or UDim2.new(0.5, -10, 1, 0),
-		Text = options.Name,
-		TextSize = 22,
-		Theme = {TextColor3 = "StrongText"},
-		TextXAlignment = Enum.TextXAlignment.Left
-	})
-
-	if options.Description then
-		local description = UpdatedContainer:object("TextLabel", {
-			BackgroundTransparency = 1,
-			Position = UDim2.fromOffset(10, 27),
-			Size = UDim2.new(0.5, -10, 0, 20),
-			Text = options.Description,
-			TextSize = 18,
-			Theme = {TextColor3 = "WeakText"},
-			TextXAlignment = Enum.TextXAlignment.Left
-		})
-	end
-    self._resize_tab({
-		container = self.UpdatedContainer or self.container,
-		layout = (self.UpdatedContainer and self.UpdatedContainer.AbsoluteObject.UIListLayout) or self.layout
 	})
 end
 
