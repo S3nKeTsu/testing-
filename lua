@@ -634,11 +634,8 @@ function Library:create(options)
 		Size = UDim2.new(0, 15, 0, 15),
 		Image = "http://www.roblox.com/asset/?id=11347112400",
 		Theme = {ImageColor3 = "StrongText"}
-	}):round(1):tooltip("copy discord")
-    homeButtonIcon.MouseButton1Click:connect(function(a)
-        local a = setclipboard("Hii")
-    end)
-
+	})
+  
 
 	local homePage = content:object("Frame", {
 		Size = UDim2.fromScale(1, 1),
@@ -3506,4 +3503,3 @@ return setmetatable(Library, {
 		return rawget(Library, i:lower())
 	end
 })
-
