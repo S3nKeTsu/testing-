@@ -712,7 +712,7 @@ function Library:create(options)
 			for _, tabInfo in next, tabs do
 				local page = tabInfo[1]
 				local button = tabInfo[2]
-				page.Visible = false
+				page.Visible = true
 			end
 			selectedTab:tween{BackgroundTransparency = ((selectedTab == homeButton) and 0.15) or 1}
 			selectedTab = homeButton
@@ -790,9 +790,9 @@ function Library:create(options)
 		local desiredInterval = 1
 		local counter = 0
 		RunService.Heartbeat:Connect(function(step)
-			counter = step  
+			counter += step  
 			if counter >= desiredInterval then
-				counter = desiredInterval
+				counter -= desiredInterval
 				local date = tostring(os.date("%X"))
 				timeDisplay.Text = date:sub(1, date:len()-3)
 			end
@@ -896,7 +896,7 @@ function Library:create(options)
 
 	rawset(mt, "creditsContainer", creditsTab.container)
 
-
+	
 
 	return mt
 end
@@ -1252,7 +1252,7 @@ end
 
 function Library:_resize_tab()
 	if self.container.ClassName == "ScrollingFrame" then
-		self.container.CanvasSize = UDim2.fromOffset(0, self.layout.AbsoluteContentSize.Y + 20)
+		self.container.CanvasSize = UDim2.fromOffset(1, self.layout.AbsoluteContentSize.Y + 20)
 	else
 		self.sectionContainer.Size = UDim2.new(1, -24, 0, self.layout.AbsoluteContentSize.Y + 20)
 		self.parentContainer.CanvasSize = UDim2.fromOffset(0, self.parentLayout.AbsoluteContentSize.Y + 20)
@@ -1639,7 +1639,7 @@ function Library:dropdown(options)
 			local label = item[1]
 			local value = item[2]
 
-			if type(label) == "table" then end
+			if type(label) == "table" then continue end
 
 			local newItem = itemContainer:object("TextButton", {
 				Theme = {
@@ -2498,7 +2498,7 @@ function Library:color_picker(options)
 					-- hacky fix for zindex issue
 					for _, v in next, darkener.AbsoluteObject:GetDescendants() do
 						pcall(function()
-							v.ZIndex = 3
+							v.ZIndex += 3
 						end)
 					end
 
@@ -2857,7 +2857,7 @@ function Library:_theme_selector()
 	local themesCount = 0
 
 	for _ in next, Library.Themes do
-		themesCount = 1
+		themesCount += 1
 	end
 
 	local themeContainer = self.container:object("Frame", {
@@ -2898,7 +2898,7 @@ function Library:_theme_selector()
 
 		for _, color in next, themeColors do
 			if not (type(color) == "boolean") then
-				count = 1
+				count += 1
 			end
 		end
 
@@ -3095,7 +3095,7 @@ function Library:prompt(options)
 	Library._promptExists = true
 
 	local count = 0; for a, _ in next, options.Buttons do
-		count = 1
+		count += 1
 	end
 
 	local darkener = self.core:object("Frame", {
