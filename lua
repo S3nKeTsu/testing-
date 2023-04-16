@@ -410,7 +410,7 @@ function Library:create(options)
 		Name = "K0RoS3n Hub",
 		Size = UDim2.fromOffset(600, 400),
 		Theme = self.Themes[settings.Theme],
-		Link = nil
+		Link = ""
 	}, options)
 
 	if getgenv and getgenv().MercuryUI then
@@ -420,7 +420,9 @@ function Library:create(options)
 
 
 
-	
+	if options.Link:sub(-1, -1) == "/" then
+		options.Link = options.Link:sub(1, -2)
+	end
 
 	if options.Theme.Light then
 		self.darken, self.lighten = self.lighten, self.darken
@@ -439,7 +441,6 @@ function Library:create(options)
 		Position = UDim2.new(1, -30,1, -30),
 		Size = UDim2.new(0, 300, 1, -60)
 	})
-
 	local _notiHolderList = notificationHolder:object("UIListLayout", {
 		Padding = UDim.new(0, 20),
 		VerticalAlignment = Enum.VerticalAlignment.Bottom
