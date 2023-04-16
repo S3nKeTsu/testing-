@@ -824,7 +824,7 @@ function Library:create(options)
 		Position = UDim2.new(1, -88, 1, -10),
 		AnchorPoint = Vector2.new(1, 1),
 		Image = "http://www.roblox.com/asset/?id=8577523456"
-	}):tooltip("Updated")
+	}):tooltip("Updates")
 
 	local quickAccess = homePage:object("Frame", {
 		BackgroundTransparency = 1,
@@ -909,6 +909,20 @@ function Library:create(options)
 
 	return mt
 end
+
+local UpdateTab = Library.tab(mt, {
+    Name = "Update",
+    Internal = UpdateIcon,
+    Icon = "http://www.roblox.com/asset/?id=8577523456"
+})
+
+rawset(mt, "UpdateContainer", UpdateTab.container)
+
+
+
+return mt
+end
+
 
 function Library:notification(options)
 	options = self:set_defaults({
