@@ -538,7 +538,7 @@ function Library:create(options)
 	local closeButton = core:object("ImageButton", {
 		BackgroundTransparency = 1,
 		Size = UDim2.fromOffset(14, 14),
-		Position = UDim2.new(1, -10, 0, 5.9),
+		Position = UDim2.new(1, -10.5, 0, 5.9),
 		Theme = {ImageColor3 = "StrongText"},
 		Image = "http://www.roblox.com/asset/?id=8497487650",
 		AnchorPoint = Vector2.new(1)
@@ -3503,3 +3503,4 @@ return setmetatable(Library, {
 		return rawget(Library, i:lower())
 	end
 })
+
