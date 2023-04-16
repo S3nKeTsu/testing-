@@ -521,7 +521,7 @@ function Library:create(options)
 	local tabButtons = core:object("ScrollingFrame", {
 		Size = UDim2.new(1, -40, 0, 25),
 		Position = UDim2.fromOffset(5, 5),
-		BackgroundTransparency = 0,
+		BackgroundTransparency = 1,
 		ClipsDescendants = true,
 		ScrollBarThickness = 0,
 		ScrollingDirection = Enum.ScrollingDirection.X,
@@ -1019,7 +1019,7 @@ function Library:tab(options)
 	local tab = self.container:object("ScrollingFrame", {
 		AnchorPoint = Vector2.new(0, 1),
 		Visible = false,
-		BackgroundTransparency = 0,
+		BackgroundTransparency = 1,
 		Position = UDim2.fromScale(0, 1),
 		Size = UDim2.fromScale(1, 1),
 		ScrollBarThickness = 0,
