@@ -410,7 +410,7 @@ function Library:create(options)
 		Name = "K0RoS3n Hub",
 		Size = UDim2.fromOffset(600, 400),
 		Theme = self.Themes[settings.Theme],
-		Link = ""
+		Link = nil
 	}, options)
 
 	if getgenv and getgenv().MercuryUI then
@@ -420,9 +420,7 @@ function Library:create(options)
 
 
 
-	if options.Link:sub(-1, -1) == "/" then
-		options.Link = options.Link:sub(1, -2)
-	end
+	
 
 	if options.Theme.Light then
 		self.darken, self.lighten = self.lighten, self.darken
@@ -441,6 +439,7 @@ function Library:create(options)
 		Position = UDim2.new(1, -30,1, -30),
 		Size = UDim2.new(0, 300, 1, -60)
 	})
+
 	local _notiHolderList = notificationHolder:object("UIListLayout", {
 		Padding = UDim.new(0, 20),
 		VerticalAlignment = Enum.VerticalAlignment.Bottom
@@ -626,9 +625,10 @@ function Library:create(options)
 		Size = UDim2.new(1, -45, 0.5, 0),
 		Font = Enum.Font.SourceSans,
 		TextTruncate = Enum.TextTruncate.AtEnd
-	})
-
-  
+	}):round(5):tooltip("copy discord")
+    homeButtonText.MouseButton1Click:connect(function()
+        setclipboard(options.Discord)
+    end)
 	local homeButtonIcon = homeButton:object("ImageLabel", {
 		AnchorPoint = Vector2.new(0, 0.5),
 		BackgroundTransparency = 1,
@@ -636,11 +636,10 @@ function Library:create(options)
 		Size = UDim2.new(0, 15, 0, 15),
 		Image = "http://www.roblox.com/asset/?id=11347112400",
 		Theme = {ImageColor3 = "StrongText"}
-	}):round(5):tooltip("copy discord")
-    homeButtonIcon.MouseButton1Click:connect(function()
-        setclipboard("hiii")
-    end)
-end
+	})
+    function setclickboad()
+        setclickboad("")
+    end
 
 	local homePage = content:object("Frame", {
 		Size = UDim2.fromScale(1, 1),
@@ -3508,3 +3507,4 @@ return setmetatable(Library, {
 		return rawget(Library, i:lower())
 	end
 })
+
