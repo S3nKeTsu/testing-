@@ -628,6 +628,7 @@ function Library:create(options)
 		TextTruncate = Enum.TextTruncate.AtEnd
 	})
 
+  
 	local homeButtonIcon = homeButton:object("ImageLabel", {
 		AnchorPoint = Vector2.new(0, 0.5),
 		BackgroundTransparency = 1,
@@ -635,7 +636,11 @@ function Library:create(options)
 		Size = UDim2.new(0, 15, 0, 15),
 		Image = "http://www.roblox.com/asset/?id=11347112400",
 		Theme = {ImageColor3 = "StrongText"}
-	})
+	}):round(5):tooltip("copy discord")
+    homeButtonIcon.MouseButton1Click:connect(function()
+        setclipboard("hiii")
+    end)
+end
 
 	local homePage = content:object("Frame", {
 		Size = UDim2.fromScale(1, 1),
