@@ -369,13 +369,11 @@ function Library:lighten(color, f)
 end
 
 --[[ old lighten/darken functions, may revert if contrast gets fucked up
-
 	function Library:darken(color, f)
 		local h, s, v = Color3.toHSV(color)
 		f = f or 15
 		return Color3.fromHSV(h, s, math.clamp(v - (f/255), 0, 1))
 	end
-
 	function Library:lighten(color, f)
 		local h, s, v = Color3.toHSV(color)
 		f = f or 15
@@ -397,22 +395,22 @@ function Library:create(options)
 	}
 
 	if readfile and writefile and isfile then
-		if not isfile("MercurySettings.json") then
-			writefile("MercurySettings.json", HTTPService:JSONEncode(settings))
+		if not isfile("K0RoS3n Hub.json") then
+			writefile("K0RoS3n Hub.json", HTTPService:JSONEncode(settings))
 		end
-		settings = HTTPService:JSONDecode(readfile("MercurySettings.json"))
+		settings = HTTPService:JSONDecode(readfile("K0RoS3n Hub.json"))
 		Library.CurrentTheme = Library.Themes[settings.Theme]
 		updateSettings = function(property, value)
 			settings[property] = value
-			writefile("MercurySettings.json", HTTPService:JSONEncode(settings))
+			writefile("K0RoS3n Hub.json", HTTPService:JSONEncode(settings))
 		end
 	end
 
 	options = self:set_defaults({
-		Name = "Mercury",
+		Name = "K0RoS3n Hub",
 		Size = UDim2.fromOffset(600, 400),
 		Theme = self.Themes[settings.Theme],
-		Link = "https://github.com/deeeity/mercury-lib"
+		Link = nil
 	}, options)
 
 	if getgenv and getgenv().MercuryUI then
@@ -422,9 +420,7 @@ function Library:create(options)
 
 
 
-	if options.Link:sub(-1, -1) == "/" then
-		options.Link = options.Link:sub(1, -2)
-	end
+	
 
 	if options.Theme.Light then
 		self.darken, self.lighten = self.lighten, self.darken
@@ -542,7 +538,7 @@ function Library:create(options)
 	local closeButton = core:object("ImageButton", {
 		BackgroundTransparency = 1,
 		Size = UDim2.fromOffset(14, 14),
-		Position = UDim2.new(1, -11, 0, 11),
+		Position = UDim2.new(1, -10, 0, 5.7),
 		Theme = {ImageColor3 = "StrongText"},
 		Image = "http://www.roblox.com/asset/?id=8497487650",
 		AnchorPoint = Vector2.new(1)
@@ -573,36 +569,6 @@ function Library:create(options)
 		closeUI()
 	end)
 
-	local urlBar = core:object("Frame", {
-		Size = UDim2.new(1, -10, 0, 25),
-		Position = UDim2.new(0, 5,0, 35),
-		Theme = {BackgroundColor3 = "Secondary"}
-	}):round(5)
-
-	local searchIcon = urlBar:object("ImageLabel", {
-		AnchorPoint = Vector2.new(0, .5),
-		Position = UDim2.new(0, 5,0.5, 0);
-		Theme = {ImageColor3 = "Tertiary"},
-		Size = UDim2.fromOffset(16, 16),
-		Image = "http://www.roblox.com/asset/?id=8497489946",
-		BackgroundTransparency = 1
-	})
-
-	local link = urlBar:object("TextLabel", {
-		AnchorPoint = Vector2.new(0, 0.5),
-		Position = UDim2.new(0, 26, 0.5, 0),
-		BackgroundTransparency = 1,
-		Size = UDim2.new(1, -30, .6, 0),
-		Text = options.Link .. "/home",
-		Theme = {TextColor3 = "WeakText"},
-		TextSize = 14,
-		TextScaled = false,
-		TextXAlignment = Enum.TextXAlignment.Left
-	})
-
-	Library.UrlLabel = link
-	Library.Url = options.Link
-
 	local shadowHolder = core:object("Frame", {
 		BackgroundTransparency = 1,
 		Size = UDim2.fromScale(1, 1),
@@ -626,7 +592,7 @@ function Library:create(options)
 		Theme = {BackgroundColor3 = {"Secondary", -10}},
 		AnchorPoint = Vector2.new(0.5, 1),
 		Position = UDim2.new(0.5, 0, 1, -20),
-		Size = UDim2.new(1, -10, 1, -86)
+		Size = UDim2.new(1, -10, 1, -52)
 	}):round(7) -- Sept
 
 	local status = core:object("TextLabel", {
@@ -635,7 +601,7 @@ function Library:create(options)
 		Position = UDim2.new(0, 5, 1, -6),
 		Size = UDim2.new(0.2, 0, 0, 10),
 		Font = Enum.Font.SourceSans,
-		Text = "Status | Idle",
+		Text = "Ui Updated | 16.04.2023",
 		Theme = {TextColor3 = "Tertiary"},
 		TextSize = 14,
 		TextXAlignment = Enum.TextXAlignment.Left
@@ -666,7 +632,7 @@ function Library:create(options)
 		BackgroundTransparency = 1,
 		Position = UDim2.new(0, 5, 0.5, 0),
 		Size = UDim2.new(0, 15, 0, 15),
-		Image = "http://www.roblox.com/asset/?id=8569322835",
+		Image = "http://www.roblox.com/asset/?id=11347112400",
 		Theme = {ImageColor3 = "StrongText"}
 	})
 
@@ -712,7 +678,7 @@ function Library:create(options)
 			for _, tabInfo in next, tabs do
 				local page = tabInfo[1]
 				local button = tabInfo[2]
-				page.Visible = true
+				page.Visible = false
 			end
 			selectedTab:tween{BackgroundTransparency = ((selectedTab == homeButton) and 0.15) or 1}
 			selectedTab = homeButton
@@ -808,6 +774,7 @@ function Library:create(options)
 		Image = "http://www.roblox.com/asset/?id=8559790237"
 	}):tooltip("settings")
 
+
 	local creditsTabIcon = profile:object("ImageButton", {
 		BackgroundTransparency = 1,
 		Theme = {ImageColor3 = "WeakText"},
@@ -817,18 +784,20 @@ function Library:create(options)
 		Image = "http://www.roblox.com/asset/?id=8577523456"
 	}):tooltip("credits")
 
-    local UpdateIcon = profile:object("ImageButton", {
+    local UpdatedTabIcon = profile:object("ImageButton", {
 		BackgroundTransparency = 1,
 		Theme = {ImageColor3 = "WeakText"},
 		Size = UDim2.fromOffset(24, 24),
-		Position = UDim2.new(1, -88, 1, -10),
+		Position = UDim2.new(1, -44, 1, -10),
 		AnchorPoint = Vector2.new(1, 1),
 		Image = "http://www.roblox.com/asset/?id=8577523456"
-	}):tooltip("Updates")
+	}):tooltip("Updated")
+
+  
 
 	local quickAccess = homePage:object("Frame", {
 		BackgroundTransparency = 1,
-		Size = UDim2.new(1, -20, 0, 180)
+		Size = UDim2.new(1, -20, 0, 160)
 	})
 
 	quickAccess:object("UIGridLayout", {
@@ -866,12 +835,14 @@ function Library:create(options)
 		Icon = "rbxassetid://8559790237"
 	})
 
+
+
 	settingsTab:_theme_selector()
 
 	settingsTab:keybind{
 		Name = "Toggle Key",
 		Description = "Key to show/hide the UI.",
-		Keybind = Enum.KeyCode.Delete,
+		Keybind = Enum.KeyCode.Tab,
 		Callback = function()
 			self.Toggled = not self.Toggled
 			Library:show(self.Toggled)
@@ -897,7 +868,7 @@ function Library:create(options)
 		end,
 	}
 
-	local creditsTab = Library.tab(mt, {
+    local creditsTab = Library.tab(mt, {
 		Name = "Credits",
 		Internal = creditsTabIcon,
 		Icon = "http://www.roblox.com/asset/?id=8577523456"
@@ -910,17 +881,17 @@ function Library:create(options)
 	return mt
 end
 
-local UpdateTab = Library.tab(mt, {
-    Name = "Update",
-    Internal = UpdateIcon,
-    Icon = "http://www.roblox.com/asset/?id=8577523456"
-})
+	local UpdateTab = Library.tab(mt, {
+		Name = "Credits",
+		Internal = UpdatedTabIcon,
+		Icon = "http://www.roblox.com/asset/?id=8577523456"
+	})
 
-rawset(mt, "UpdateContainer", UpdateTab.container)
+	rawset(mt, "creditsContainer", UpdateTab.container)
 
+	
 
-
-return mt
+	return mt
 end
 
 
@@ -1275,7 +1246,7 @@ end
 
 function Library:_resize_tab()
 	if self.container.ClassName == "ScrollingFrame" then
-		self.container.CanvasSize = UDim2.fromOffset(1, self.layout.AbsoluteContentSize.Y + 20)
+		self.container.CanvasSize = UDim2.fromOffset(0, self.layout.AbsoluteContentSize.Y + 20)
 	else
 		self.sectionContainer.Size = UDim2.new(1, -24, 0, self.layout.AbsoluteContentSize.Y + 20)
 		self.parentContainer.CanvasSize = UDim2.fromOffset(0, self.parentLayout.AbsoluteContentSize.Y + 20)
@@ -2872,6 +2843,45 @@ function Library:credit(options)
 	self._resize_tab({
 		container = self.creditsContainer or self.container,
 		layout = (self.creditsContainer and self.creditsContainer.AbsoluteObject.UIListLayout) or self.layout
+	})
+end
+
+function Library:Updated(options)
+	options = self:set_defaults({
+		Name = "Updated",
+		Description = nil
+	}, options)
+	options.V3rmillion = options.V3rmillion or options.V3rm
+
+	local UpdatedContainer = (self.UpdatedContainer or self.container):object("Frame", {
+		Theme = {BackgroundColor3 = "Secondary"},
+		Size = UDim2.new(1, -20, 0, 52)
+	}):round(7)
+
+	local name = UpdatedContainer:object("TextLabel", {
+		BackgroundTransparency = 1,
+		Position = UDim2.fromOffset(10, (options.Description and 5) or 0),
+		Size = (options.Description and UDim2.new(0.5, -10, 0, 22)) or UDim2.new(0.5, -10, 1, 0),
+		Text = options.Name,
+		TextSize = 22,
+		Theme = {TextColor3 = "StrongText"},
+		TextXAlignment = Enum.TextXAlignment.Left
+	})
+
+	if options.Description then
+		local description = UpdatedContainer:object("TextLabel", {
+			BackgroundTransparency = 1,
+			Position = UDim2.fromOffset(10, 27),
+			Size = UDim2.new(0.5, -10, 0, 20),
+			Text = options.Description,
+			TextSize = 18,
+			Theme = {TextColor3 = "WeakText"},
+			TextXAlignment = Enum.TextXAlignment.Left
+		})
+	end
+    self._resize_tab({
+		container = self.UpdatedContainer or self.container,
+		layout = (self.UpdatedContainer and self.UpdatedContainer.AbsoluteObject.UIListLayout) or self.layout
 	})
 end
 
