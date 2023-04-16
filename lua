@@ -637,7 +637,9 @@ function Library:create(options)
 	}):round(5):tooltip("copy discord")
     homeButtonIcon.MouseButton1Click:connect(function()
         setclipboard("Hii")
+    end
     end)
+
 
 	local homePage = content:object("Frame", {
 		Size = UDim2.fromScale(1, 1),
@@ -3505,5 +3507,4 @@ return setmetatable(Library, {
 		return rawget(Library, i:lower())
 	end
 })
-
 
