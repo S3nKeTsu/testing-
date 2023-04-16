@@ -1,4 +1,4 @@
-local TweenService = game:GetService("TweenService")
+local TweenService = game:GetService("TweenService")local TweenService = game:GetService("TweenService")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
 local Players = game:GetService("Players")
@@ -887,12 +887,10 @@ end
 		Icon = "http://www.roblox.com/asset/?id=8577523456"
 	})
 
-	rawset(mt, "creditsContainer", UpdateTab.container)
+	rawset(mt, "UpdatedContainer", UpdateTab.container)
 
 	
 
-	return mt
-end
 
 
 function Library:notification(options)
@@ -2851,7 +2849,7 @@ function Library:Updated(options)
 		Name = "Updated",
 		Description = nil
 	}, options)
-	options.V3rmillion = options.V3rmillion or options.V3rm
+	
 
 	local UpdatedContainer = (self.UpdatedContainer or self.container):object("Frame", {
 		Theme = {BackgroundColor3 = "Secondary"},
