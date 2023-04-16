@@ -538,7 +538,7 @@ function Library:create(options)
 	local closeButton = core:object("ImageButton", {
 		BackgroundTransparency = 1,
 		Size = UDim2.fromOffset(14, 14),
-		Position = UDim2.new(1, -10.5, 0, 5.9),
+		Position = UDim2.new(1, -10, 0, 5.7),
 		Theme = {ImageColor3 = "StrongText"},
 		Image = "http://www.roblox.com/asset/?id=8497487650",
 		AnchorPoint = Vector2.new(1)
@@ -626,7 +626,7 @@ function Library:create(options)
 		Font = Enum.Font.SourceSans,
 		TextTruncate = Enum.TextTruncate.AtEnd
 	})
-    
+
 	local homeButtonIcon = homeButton:object("ImageLabel", {
 		AnchorPoint = Vector2.new(0, 0.5),
 		BackgroundTransparency = 1,
@@ -635,7 +635,6 @@ function Library:create(options)
 		Image = "http://www.roblox.com/asset/?id=11347112400",
 		Theme = {ImageColor3 = "StrongText"}
 	})
-  
 
 	local homePage = content:object("Frame", {
 		Size = UDim2.fromScale(1, 1),
@@ -3503,3 +3502,4 @@ return setmetatable(Library, {
 		return rawget(Library, i:lower())
 	end
 })
+
