@@ -523,7 +523,7 @@ function Library:create(options)
 		Position = UDim2.fromOffset(5, 5),
 		BackgroundTransparency = 1,
 		ClipsDescendants = true,
-		ScrollBarThickness = 0,
+		ScrollBarThickness = 1,
 		ScrollingDirection = Enum.ScrollingDirection.X,
 		AutomaticCanvasSize = Enum.AutomaticSize.X
 	})
@@ -1022,7 +1022,7 @@ function Library:tab(options)
 		BackgroundTransparency = 1,
 		Position = UDim2.fromScale(0, 1),
 		Size = UDim2.fromScale(1, 1),
-		ScrollBarThickness = 0,
+		ScrollBarThickness = 1,
 		ScrollingDirection = Enum.ScrollingDirection.Y
 	})
 
