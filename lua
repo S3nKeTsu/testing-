@@ -634,10 +634,9 @@ function Library:create(options)
 		Size = UDim2.new(0, 15, 0, 15),
 		Image = "http://www.roblox.com/asset/?id=11347112400",
 		Theme = {ImageColor3 = "StrongText"}
-	}):round(5):tooltip("copy discord")
-    homeButtonIcon.MouseButton1Click:connect(function()
-        setclipboard("Hii")
-    end
+	}):round(1):tooltip("copy discord")
+    homeButtonIcon.MouseButton1Click:connect(function(a)
+        local a = setclipboard("Hii")
     end)
 
 
