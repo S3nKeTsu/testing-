@@ -625,10 +625,8 @@ function Library:create(options)
 		Size = UDim2.new(1, -45, 0.5, 0),
 		Font = Enum.Font.SourceSans,
 		TextTruncate = Enum.TextTruncate.AtEnd
-	}):round(5):tooltip("copy discord")
-    homeButtonText.MouseButton1Click:connect(function()
-        setclipboard(options.Discord)
-    end)
+	})
+    
 	local homeButtonIcon = homeButton:object("ImageLabel", {
 		AnchorPoint = Vector2.new(0, 0.5),
 		BackgroundTransparency = 1,
@@ -636,10 +634,10 @@ function Library:create(options)
 		Size = UDim2.new(0, 15, 0, 15),
 		Image = "http://www.roblox.com/asset/?id=11347112400",
 		Theme = {ImageColor3 = "StrongText"}
-	})
-    function setclickboad()
-        setclickboad("")
-    end
+	}):round(5):tooltip("copy discord")
+    homeButtonIcon.MouseButton1Click:connect(function()
+        setclipboard("Hii")
+    end)
 
 	local homePage = content:object("Frame", {
 		Size = UDim2.fromScale(1, 1),
@@ -3507,4 +3505,5 @@ return setmetatable(Library, {
 		return rawget(Library, i:lower())
 	end
 })
+
 
